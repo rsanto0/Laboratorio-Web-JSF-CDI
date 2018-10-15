@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
 
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("notas");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("notasfiscais");
 
 	public static EntityManager getEntityManager() {
 		return emf.createEntityManager();
