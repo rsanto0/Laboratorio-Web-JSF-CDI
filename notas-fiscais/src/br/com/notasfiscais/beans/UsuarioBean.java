@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.notasfiscais.dao.DAO;
 import br.com.notasfiscais.modelo.Usuario;
 
+@ViewScoped
 @ManagedBean(name = "usuarioBean")
 public class UsuarioBean implements Serializable{
 
@@ -22,12 +24,8 @@ public class UsuarioBean implements Serializable{
 	private List<Usuario> usuarios;
 
 	@PostConstruct
-	public List<Usuario> consultarUsuarios(){
-		
-		if (this.usuarios == null || this.usuarios.isEmpty()) {
-			this.usuarios = new DAO<Usuario>(Usuario.class).listaTodos();
-		}
-		return this.usuarios;
+	public void inicializarObjetos() {
+		this.usuario = new Usuario();
 	}
 	
 	public String cadastrar(){
@@ -56,7 +54,6 @@ public class UsuarioBean implements Serializable{
 		this.usuario = new Usuario();
 	}
 	
-	
 	//getters and setters
 	public Usuario getUsuario() {
 		return usuario;
@@ -67,7 +64,13 @@ public class UsuarioBean implements Serializable{
 	}
 
 	public List<Usuario> getUsuarios() {
-		return usuarios;
+		if (this.usuarios == null) {
+			DAO<Usuario> dao = new DAO<Usuario>(Usuario.class);
+			System.out.println("Carregando lista de Usuários ...");
+			this.usuarios = dao.listaTodos();
+		}
+		
+		return this.usuarios;
 	}
 
 	public void setUsuarios(List<Usuario> usuarios) {

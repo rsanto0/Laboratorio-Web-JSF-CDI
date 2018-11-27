@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<title>Sitemas de Notas Fiscais UberDist</title>
-	<h:outputStylesheet name="style.css" library="css"/>
-</h:head>
-<h:body>
-	<div id="cabecalho">
-		<h:graphicImage library="imagens" name="logo-uber.png" id="logoCompany"/>
-	</div>
-	<div id="conteudo">
-		<h2>login no Sistema</h2>
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+		<h2>Login no Sistema</h2>
 		<h:form id="formLogin" method="POST">
 			<h:panelGrid columns="2" styleClass="campos">
-				<h:outputLabel value="Login:"/>
-				<h:inputText value="#{loginBean.usuario.login}"/>
-				
-				<h:outputLabel value="Senha:"/>
-				<h:inputSecret value="#{loginBean.usuario.senha}"/>
-				
-				<h:commandButton value="Efetuar Login" action="#{loginBean.efetualogin}"/>
+				<h:outputLabel value="Login:" />
+				<h:inputText value="#{loginBean.usuario.login}" />
+
+				<h:outputLabel value="Senha:" />
+				<h:inputSecret value="#{loginBean.usuario.senha}" />
+
+				<h:commandButton value="Efetuar Login" action="#{loginBean.efetualogin}" />
 			</h:panelGrid>
 		</h:form>
-	</div>
-	<div id="rodape">
-		<div id="rodape">Copyright 2010. Todos os direitos reservados a Rodrigo Diniz</div>
-	</div>
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>
