@@ -6,4 +6,9 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
 
+	<lifecycle>
+		<phase-listener>br.com.notasfiscais.listener.CicloDeVidaListener</phase-listener>
+		<phase-listener>br.com.notasfiscais.listener.AutorizacaoListener</phase-listener>
+	</lifecycle>
+	
 </faces-config>

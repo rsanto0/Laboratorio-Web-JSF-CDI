@@ -1,5 +1,6 @@
 package br.com.notasfiscais.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +13,12 @@ import br.com.notasfiscais.modelo.Produto;
 
 @ViewScoped
 @ManagedBean(name = "produtoBean")
-public class ProdutoBean {
+public class ProdutoBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Produto produto;
 
@@ -26,7 +32,8 @@ public class ProdutoBean {
 		this.total = 0.0;
 	}
 
-	public void grava() {
+	public String grava() {
+		System.out.println("Será que vai passar por aqui?");
 		DAO<Produto> dao = new DAO<Produto>(Produto.class);
 		if (this.produto.getId() == null) {
 			
@@ -38,6 +45,8 @@ public class ProdutoBean {
 		this.produto = new Produto();
 		//para atualiza a lista após a gravação de um novo registro
 		this.produtos = dao.listaTodos();
+		
+		return "produto?faces-redirect=true";
 	}
 	
 	public void remove(Produto produto) {
