@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
 
-import br.com.notasfiscais.util.JPAUtil;
+import static br.com.notasfiscais.util.JPAUtil.*;
 
 public class DAO<T> {
 
@@ -17,7 +17,7 @@ public class DAO<T> {
 	}
 
 	public void adiciona(T t) {
-		EntityManager em = new JPAUtil().getEntityManager();
+		EntityManager em = getEntityManager();
 		em.getTransaction().begin();
 
 		em.persist(t);
@@ -27,7 +27,7 @@ public class DAO<T> {
 	}
 
 	public void remove(T t) {
-		EntityManager em = new JPAUtil().getEntityManager();
+		EntityManager em = getEntityManager();
 		em.getTransaction().begin();
 
 		em.remove(em.merge(t));
@@ -37,7 +37,7 @@ public class DAO<T> {
 	}
 
 	public void atualiza(T t) {
-		EntityManager em = new JPAUtil().getEntityManager();
+		EntityManager em = getEntityManager();
 		em.getTransaction().begin();
 
 		em.merge(t);
@@ -47,7 +47,7 @@ public class DAO<T> {
 	}
 	
 	public List<T> listaTodos() {
-		EntityManager em = new JPAUtil().getEntityManager();
+		EntityManager em = getEntityManager();
 		CriteriaQuery<T>query = em.getCriteriaBuilder().createQuery(classe);
 		query.select(query.from(classe));
 		
@@ -58,7 +58,7 @@ public class DAO<T> {
 	}
 	
 	public T buscaPorId(Long id) {
-		EntityManager em = new JPAUtil().getEntityManager();
+		EntityManager em = getEntityManager();
 		return em.find(classe, id);		
 	}
 }
